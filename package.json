@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/matiasruizcheylat/trabajoIntegrador/issues"
   },
-  "homepage": "https://github.com/matiasruizcheylat/trabajoIntegrador#readme"
+  "homepage": "https://github.com/matiasruizcheylat/trabajoIntegrador#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-myconnection": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.6.5"
+  }
 }
