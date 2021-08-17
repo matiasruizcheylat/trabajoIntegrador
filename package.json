@@ -1,29 +1,33 @@
 {
-  "name": "trabajoIntegrador",
+  "name": "cursonode",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/index.js",
+    "db:create": "npx sequelize-cli db:create",
+    "db:migrate": "npx sequelize-cli db:migrate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matiasruizcheylat/trabajoIntegrador.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/matiasruizcheylat/trabajoIntegrador/issues"
-  },
-  "homepage": "https://github.com/matiasruizcheylat/trabajoIntegrador#readme",
+  "author": "fb",
+  "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "consolidate": "^0.16.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "express-myconnection": "^1.0.4",
+    "express-ejs-layouts": "^2.5.1",
+    "express-handlebars": "^5.3.3",
+    "express-layout": "^0.1.0",
     "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "path": "^0.12.7",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.6.5"
+    "pug": "^3.0.2",
+    "sequelize": "^6.6.5",
+    "swig": "^1.4.2"
   }
 }

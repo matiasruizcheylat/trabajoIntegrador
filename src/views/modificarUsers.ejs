@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+</head>
+<body class="container">
+
+<header>
+  
+</header>
+
+<main>
+    <h4>Modificar los siguientes Campos:</h4>
+    <hr/>
+
+    <form action="/api/v1/Users/modificando?_method=PUT" method="POST">
+    <!--<form action="/api/v1/Users/modificando" method="POST" enctype="multipart/form-data"> -->
+        <div class="form-group"><br>
+           <ul>
+           <% error.forEach(function(err) { %>
+                   <li style="color:#F00;"><%= err %></li>
+           <% }); %>
+           </ul>
+           <input type="hidden" name="_method" value="PUT">
+           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+           <input type="text" name="id" value="<%= datos.id %>" hidden>
+           <input type="text" name="firstNameV" value="<%= firstNameV %>" hidden><br>
+            <input type="text" name="firstName" value="<%= datos.firstName %>" placeholder="Nombre Usuario" >*<br><br>
+            <input type="text" name="lastName" value="<%= datos.lastName %>" placeholder="Apellido" >*<br><br>
+            <input type="password" name="password" value="<%= datos.password %>" placeholder="Password" >*<br><br>
+            <input type="email" name="email" value="<%= datos.email %>" placeholder="Email" ><br><br>
+            <button type="submit" name="button"class="btn btn-primary">Modificar Usuario</button>&nbsp;
+
+            <a href="/api/v1/Users" name="button"class="btn" style="color:#A00;">Cancelar</a>
+             
+       
+        </div>
+       
+       </form>
+       
+  
+    
+</main>
+
+<footer>
+    <%- include('partials/pie') %>
+ 
+</footer>
+
+</body>
+</html>
