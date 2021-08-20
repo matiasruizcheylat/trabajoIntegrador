@@ -4,8 +4,8 @@
  
 </head>
 <body class="container">
-    <%- include('partials/headerL') %>
-    <hr/>
+    
+   
 <header>
   
 </header>
@@ -13,7 +13,7 @@
 <main>
     <h4>Llenar los siguientes Campos:</h4>
     <hr/>
-    <form action="/users/agregando" method="post" >
+    <form action="/auth/register" method="post">
         <div class="form-group"><br>
            <ul>
            <% error.forEach(function(err) { %>
@@ -25,8 +25,8 @@
             <input type="text" name="lastName" value="<%= datos.lastName %>" placeholder="Apellido" >*<br><br>
             <input type="password" name="password" value="" placeholder="Password" >*<br><br>
             <input type="email" name="email" value="<%= datos.email %>" placeholder="Email" ><br><br>
-            <button type="submit" name="button" class="btn btn-primary">Registrar Usuario</button>&nbsp;
-            <a href="/users" name="button" style="color:#A00;">Cancelar</a>
+            <button type="submit" name="button" class="btn btn-primary">Registrarme</button>&nbsp;
+            <a href="/" name="button" style="color:#A00;">Cancelar</a>
              
        
         </div>

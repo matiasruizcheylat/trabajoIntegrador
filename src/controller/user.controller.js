@@ -1,22 +1,28 @@
 const model = require('../database/models/index');
 
 var mensajeExitoso='';
+const bcrypt = require('bcryptjs');
+
+const { authJwt } = require("../middleware");
+
 
 
 
 //READ:::::
 const getUsers = async (req, res) => {
+  miId= req.cookies["miId"] || '';
   const users = await model.User.findAll();
-   const { firstName } = req.params;
-  res.render('../views/tablaUsers',{users, mensajeExitoso:mensajeExitoso} );
- // return res.status(200).json({ users });
+   const { username } = req.params;
+  res.render('../views/tablaUsers',{users, mensajeExitoso:mensajeExitoso, miId} );
+
  mensajeExitoso='';
+ return res.status(200).json({ users });
 };
 
 
 const getOneUserByName = async (req, res) => {
-  const { firstName } = req.params;
-  const users = await model.User.findAll({where: {firstName: firstName}});
+  const { username } = req.params;
+  const users = await model.User.findAll({where: {username: username}});
   //res.render('../views/tablaUsers',{users} );
   return res.status(200).json({ users });
 };
@@ -25,8 +31,8 @@ const getOneUserByName = async (req, res) => {
 const getDetailUser = async (req, res) => {
    const { id } = req.params;
   const users = await model.User.findByPk(id);
-  return res.render('../views/detalleUser',{users} );
- // return res.status(200).json({ users });
+   res.render('../views/detalleUser',{users} );
+  return res.status(200).json({ users });
 };
 
 
@@ -38,9 +44,9 @@ const getDetailUser = async (req, res) => {
 const addUser = async (req, res) => {
   const data = req.body;
 
-  var nuevoNombre=data.firstName;
+  var nuevoNombre=data.username;
   console.log(nuevoNombre);
-  var cantidad=await model.User.findAll({where: {firstName: nuevoNombre}});
+  var cantidad=await model.User.findAll({where: {username: nuevoNombre}});
   var errores=[];
   var unError=false;
   if(cantidad.length > 0){
@@ -52,6 +58,9 @@ const addUser = async (req, res) => {
   if(nuevoNombre==''){
     errores.push('El nombre de usuario no debe estar vacío');
     unError=true; }
+    if(data.firstName==''){
+      errores.push('El nombre no debe estar vacío');
+      unError=true; }
   if(data.lastName==''){
     errores.push('El apellido no debe estar vacío');
     unError=true; }
@@ -60,12 +69,14 @@ const addUser = async (req, res) => {
       errores.push('El password no debe estar vacío');
       unError=true; }
 
+
   if(unError==true){
     return res.render('../views/altaUsers' ,{error:errores, datos:data} );
-  }
+  }   
+      data.password=bcrypt.hashSync(data.password, 8);
       const inserted = await model.User.create(data);
       mensajeExitoso='Usuario Cargado Exitosamente';
-      return res.redirect('/api/v1/users');
+      return res.redirect('/users');
       
   };
 
@@ -75,7 +86,7 @@ const formUsersA = async (req, res) => {
   var error=[];
   var datos=[];
   res.render('../views/altaUsers', {error:error, datos:datos} );
- // return res.status(200).json({ users });
+  return res.status(200).json({ users });
 };
 
 //--------------------------------
@@ -90,40 +101,27 @@ const updateUser = async (req, res) => {
   const { Op } = require("sequelize");
 
   const userOriginal = await model.User.findByPk(id);
-  console.log(data.firstNameV);
-  var firstNameV=data.firstNameV;
-  var cantidad=await model.User.findAll({where: { firstName:data.firstName, [Op.not]:[{firstName:data.firstNameV}] }});
   var errores=[];
   var unError=false;
 
-    if(cantidad.length > 0){
-    //res.send(401, { err: res.locals.err });
-    errores.push('El nombre de usuario ya existe Modifique por otro');
-    unError=true;
-   
-  }
-   if(data.firstName==''){
-    errores.push('El nombre de usuario no debe estar vacío');
-    unError=true; }
+    if(data.firstName==''){
+      errores.push('El nombre no debe estar vacío');
+      unError=true; }
+
   if(data.lastName==''){
     errores.push('El apellido no debe estar vacío');
     unError=true; }
 
-   if(data.password==''){
-      errores.push('El password no debe estar vacío');
-      unError=true; }
-
 
   if(unError==true){
-    return res.render('../views/modificarUsers' ,{error:errores, datos:data, firstNameV} );
+    return res.render('../views/modificarUsers' ,{error:errores, datos:data} );
   }else{
        //const datosMod=data;
-       //datosMod.splice(data.firstNameV);
-
+       //datosMod.splice(data.usernameV);
        const inserted =await model.User.update(data, { where: { id: data.id } });
        console.log(inserted);
         mensajeExitoso='Usuario Modificado Exitosamente';
-        return res.redirect('/api/v1/users');
+        return res.redirect('/users');
   }
 
   console.log(cantidad);
@@ -144,9 +142,8 @@ const formUsersM = async (req, res) => {
   var error=[];
   const {id}=req.params;
   var datos=await model.User.findByPk(id);
-  var firstNameV=datos.firstName;
 
-  res.render('../views/modificarUsers', {error:error, datos:datos, firstNameV} );
+  res.render('../views/modificarUsers', {error:error, datos:datos} );
  // return res.status(200).json({ users });
 };
 
@@ -158,8 +155,11 @@ const formUsersM = async (req, res) => {
 //REMOVE
 const deleteUser = async (req, res) => {
   const { id } = req.params;
-  await model.User.destroy({ where: { id: id } });
-  return res.redirect('/api/v1/Users');
+  if(id== req.cookies["miId"]){
+    console.log("NO SE PUEDE AUTODESTRUIR");
+  }else{
+  await model.User.destroy({ where: { id: id } });}
+  return res.redirect('/users');
 
 };
 

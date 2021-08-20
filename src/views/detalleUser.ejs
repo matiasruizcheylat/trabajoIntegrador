@@ -6,7 +6,8 @@
 <body class="container">
 
 <header>
-  
+    <%- include('partials/headerL') %>
+    <hr/>
 </header>
 
 <main>
@@ -14,13 +15,14 @@
     <hr/>
      <ul>
         <li><b>Id:</b> <%= users.id %></li>
+        <li><b>Nombre de Usuario:</b> <%= users.username %></li>
         <li><b>Nombre:</b> <%= users.firstName %></li>
         <li><b>Apellido:</b> <%= users.lastName %></li>
         <li><b>email:</b> <%= users.email %></li>
         <li><b>Creado:</b> <%= users.createdAt %></li>
         <li><b>Modificado:</b> <%= users.updatedAt %></li>
      </ul>
-     <a href="/api/v1/Users" class="btn btn-info">Volver</a>
+     <a href="/users" class="btn btn-info">Volver</a>
 
        
     

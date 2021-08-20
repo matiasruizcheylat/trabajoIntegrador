@@ -1,0 +1,16 @@
+
+<div style="align-items:right;">
+  
+    <% if (logueado != '') { %>
+        <a href="/auth/logout">Logout</a>&nbsp;&nbsp;
+        <%} else { %>
+            <a href="/auth/autenticarse">Login</a>&nbsp;&nbsp;
+             <a href="/auth/registro">Registrarme</a>&nbsp;&nbsp;
+        <% } %>
+        <% if (logueado != '') { %>
+            <a href="/">Home</a>&nbsp;&nbsp;
+            <a href="/Users">Users</a>
+            <%} %>
+
+    
+</div>

@@ -6,15 +6,15 @@
 <body class="container">
 
 <header>
-  
+    <%- include('partials/headerL') %>
+    <hr/>
 </header>
 
 <main>
     <h4>Modificar los siguientes Campos:</h4>
     <hr/>
-
-    <form action="/api/v1/Users/modificando?_method=PUT" method="POST">
-    <!--<form action="/api/v1/Users/modificando" method="POST" enctype="multipart/form-data"> -->
+     <h5>Usuario: <%= datos.username %></h5>
+    <form action="/users/modificando?_method=PUT" method="POST">
         <div class="form-group"><br>
            <ul>
            <% error.forEach(function(err) { %>
@@ -25,14 +25,14 @@
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
            <input type="text" name="id" value="<%= datos.id %>" hidden>
-           <input type="text" name="firstNameV" value="<%= firstNameV %>" hidden><br>
-            <input type="text" name="firstName" value="<%= datos.firstName %>" placeholder="Nombre Usuario" >*<br><br>
-            <input type="text" name="lastName" value="<%= datos.lastName %>" placeholder="Apellido" >*<br><br>
-            <input type="password" name="password" value="<%= datos.password %>" placeholder="Password" >*<br><br>
-            <input type="email" name="email" value="<%= datos.email %>" placeholder="Email" ><br><br>
+            <input type="text" name="username" value="<%= datos.username %>" placeholder="Nombre Usuario" hidden>
+            <input type="text" name="firstName" value="<%= datos.firstName %>" placeholder="Nombre" >Nombre<br><br>
+            <input type="text" name="lastName" value="<%= datos.lastName %>" placeholder="Apellido" >Apellido<br><br>
+            <input type="password" name="password" value="<%= datos.password %>" placeholder="Password" hidden>
+            <input type="email" name="email" value="<%= datos.email %>" placeholder="Email" >Email<br><br>
             <button type="submit" name="button"class="btn btn-primary">Modificar Usuario</button>&nbsp;
 
-            <a href="/api/v1/Users" name="button"class="btn" style="color:#A00;">Cancelar</a>
+            <a href="/Users" name="button"class="btn" style="color:#A00;">Cancelar</a>
              
        
         </div>

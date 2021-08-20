@@ -1,3 +1,4 @@
+'use strict';
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Task extends Model {
@@ -8,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Task.belongsTo(models.User)
+      //Task.belongsTo(models.User)
     }
   }
   Task.init(
@@ -31,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       completed: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+      },
+      userId: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {

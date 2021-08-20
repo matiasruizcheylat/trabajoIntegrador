@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+</head>
+<body class="container">
+    <%- include('partials/headerL') %>
+    <hr/>
+<header>
+  
+</header>
+
+<main>
+    <h4>Modificar los siguientes Campos:</h4>
+    <hr/>
+    <form action="/tasks/modificando?_methodT=PUT" method="POST" >
+        <div class="form-group"><br>
+           <ul>
+           <% error.forEach(function(err) { %>
+                   <li style="color:#F00;"><%= err %></li>
+           <% }); %>
+           </ul>
+           <input type="hidden" name="_methodT" value="PUT">
+           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+           <input type="text" name="id" value="<%= datos.id %>" hidden>
+           <input type="text" name="userId" value="<%= datos.userId %>" placeholder="Usuario" readonly onfocus="this.removeAttribute('readonly');"  hidden>
+           <input type="text" name="name" value="<%= datos.name %>" placeholder="Nombre de Tarea" readonly onfocus="this.removeAttribute('readonly');"  >Nombre tarea*<br><br>
+           
+           <textarea name="description" rows="10" cols="50" placeholder="descripcion" value="<%= datos.description %>"><%=datos.description %></textarea><br><br>
+
+           <input type="Date" name="startDate" value="<%= startDate %>" > Fecha Inicio*<br><br>
+           <input type="Date" name="endDate" value="<%= endDate %>" > Fecha Fin*<br><br>
+              
+           <input type="checkbox" name="completed" value="1"
+             "<% if(datos.completed == true) { %>
+                  checked  <% }%>"  > Completed<br><br>
+          
+           <button type="submit" name="button" class="btn btn-primary">Modificar Tarea</button>&nbsp;
+           <a href="/tasks/<%=datos.userId%>" name="button" style="color:#A00;">Cancelar</a>
+             
+       
+        </div>
+       
+       </form>
+       
+
+
+    
+</main>
+
+<footer>
+    <%- include('partials/pie') %>
+ 
+</footer>
+
+</body>
+</html>
+
+
+

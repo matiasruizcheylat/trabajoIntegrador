@@ -6,36 +6,52 @@
 <body class="container">
 
 <header>
-  
+    <%- include('partials/headerL') %>
+  <hr/>
 </header>
-
+ 
 <main>
 
   <h3 style="color:#050;"><%= mensajeExitoso %></h3>
-  <a href="/api/v1/Users/alta" class="btn btn-primary">Cargar Usuario nuevo +</a>
-  <br><hr/>
+  <a href="/users/alta" class="btn btn-primary">Cargar Usuario nuevo +</a>
+  <br>
 <h2>Listado de Usuarios:</h2>
 <table class="table table-striped">
     <tr>
         <th>Id</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
+        <th>UserName</th>
         <th>Email</th>
+        <th>Tareas:</th>
         <th>ACCIONES</th>
         <th></th>
 
     </tr>
     <% users.forEach(function(user) { %>
         <tr>
+            <% if (user.dataValues.id != miId) { %>
+
             <td><%= user.dataValues.id %></td>
-            <td><%= user.dataValues.firstName %></td>
-            <td><%= user.dataValues.lastName %></td>
+            <td><%= user.dataValues.username %></td>
             <td><%= user.dataValues.email %></td>
-            <td><a href="/api/v1/Users/detalle/<%= user.dataValues.id %>" class="btn btn-info">Detalle</a>
-                <a href="/api/v1/Users/modificar/<%= user.dataValues.id %>"  class="btn btn-warning">Editar</a></td>
-            <td><a href="/api/v1/Users/borrando/<%= user.dataValues.id %>"  onclick="return confirm('Estás Seguro de borrar eso?')"  class="btn btn-danger">Borrar</a></td>
+            <td><a href="/tasks/<%= user.dataValues.id %>" class="btn btn-primary">Sus Tareas</a></td>
+            <td><a href="/users/detalle/<%= user.dataValues.id %>" class="btn btn-info">Detalle</a>
+                <a href="/users/modificar/<%= user.dataValues.id %>"  class="btn btn-warning">Editar</a></td>
+            <td><a href="/users/borrando/<%= user.dataValues.id %>"  onclick="return confirm('Estás Seguro de borrar Ese usuario?')"  class="btn btn-danger">Borrar</a></td>
         </tr>
-     
+        <% }else{ %>
+
+            <tr style="background:#F003">
+
+            <td><%= user.dataValues.id %> </td>
+            <td><%= user.dataValues.username %> | YO</td>
+            <td><%= user.dataValues.email %></td>
+            <td><a href="/tasks/<%= user.dataValues.id %>" class="btn btn-primary">Sus Tareas</a></td>
+            <td><a href="/users/detalle/<%= user.dataValues.id %>" class="btn btn-info">Mi Perfil</a>
+                <a href="/users/modificar/<%= user.dataValues.id %>"  class="btn btn-warning">EditarME</a></td>
+                
+            <td></td>
+        </tr>
+        <% } %>
     <% }); %>
     </table>
     

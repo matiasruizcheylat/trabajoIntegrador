@@ -4,10 +4,16 @@ const routerConfig = require('./routes/index.routes');
 require('dotenv').config();
 var layout = require('express-layout');
 
+
+
+var cookieParser = require('cookie-parser')
+
+
+
 const PORT = process.env.PORT || 3000;
 
 var methodOverride = require('method-override');
-
+var methodOverride2 = require('method-override');
 const hbs=require('express-handlebars');
 const appa=express();
 
@@ -19,27 +25,16 @@ const configApi = (app) => {
   app.set('view engine', 'ejs');
   
   app.set('views', './src/views');
- 
-  app.use(methodOverride('_method'));
-  app.use(methodOverride('_methodD'));
-  
-  //app.engine('html', cons.swig);
- // app.set('views', path.join(__dirname, './src/views'));
- // app.set('view engine', 'html');
-   
- //  app.set('views', './src/views');
- //  app.set('view engine', 'ejs');
-   
+  app.use(methodOverride('_methodT'));
+  app.use(methodOverride2('_method'));
+
+  app.use(cookieParser());
 
   return;
 };
 
 const configRouter = (app) => {
-  app.use('/api/v1/', routerConfig.loggedInRoutes());
-  app.use('/', routerConfig.authroutes());
-
-//  app.get('/', (req, res) => res.render('../views/hola'));
-
+  app.use('/', routerConfig.rutas());
 };
 
 const configHeaders = (app) => {

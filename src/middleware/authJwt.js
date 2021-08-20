@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
 
 const check = (req, res, next) => {
-  const token = req.headers["x-access-token"];
+  
+  const token = req.cookies["x-access-token"] ;
+  
   if (!token) {
     return res.status(401).send({
       message: "No enviaste el token",
@@ -15,7 +17,6 @@ const check = (req, res, next) => {
         });
       }
       req.userId = decoded.id;
-      console.log(decoded.id)
       next();
     });
   } catch (err) {

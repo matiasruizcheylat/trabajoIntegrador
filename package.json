@@ -6,14 +6,14 @@
   "scripts": {
     "start": "nodemon src/index.js",
     "db:create": "npx sequelize-cli db:create",
-    "db:migrate": "npx sequelize-cli db:migrate",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:migrate": "npx sequelize-cli db:migrate"
   },
   "author": "fb",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "consolidate": "^0.16.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
@@ -29,5 +29,10 @@
     "pug": "^3.0.2",
     "sequelize": "^6.6.5",
     "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.0.3"
   }
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+</head>
+<body class="container">
+
+<header>
+  
+</header>
+
+<main>
+    <h4>Autenticarse:</h4>
+     
+    <hr/>
+    <form action="/auth/login" method="POST" autocomplete="off">
+        <div class="form-group"><br>
+           <ul>
+           <% error.forEach(function(err) { %>
+                   <li style="color:#F00;"><%= err %></li>
+           <% }); %>
+           </ul>
+            <input type="text" name="username" value="<%= datos.username %>" readonly onfocus="this.removeAttribute('readonly');"  >Nombre de usuario<br><br>
+            <input type="password" name="password" value="<%= datos.lastName %>"  >Contraseña<br><br>
+            <button type="submit" name="button" class="btn btn-primary">Login</button>&nbsp;
+            <a href="/" name="button" style="color:#A00;">Cancelar</a>
+             
+       
+        </div>
+       
+       </form>
+   
+    
+</main>
+
+<footer>
+    <%- include('partials/pie') %>
+ 
+</footer>
+
+</body>
+</html>

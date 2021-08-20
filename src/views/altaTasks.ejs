@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+</head>
+<body class="container">
+    <%- include('partials/headerL') %>
+    <hr/>
+<header>
+  
+</header>
+
+<main>
+    <h4>Llenar los siguientes Campos:</h4>
+    <hr/>
+    <form action="/tasks/agregando" method="post" >
+        <div class="form-group"><br>
+           <ul>
+           <% error.forEach(function(err) { %>
+                   <li style="color:#F00;"><%= err %></li>
+           <% }); %>
+           </ul>
+
+           <input type="text" name="idUser" value="<%= idUser %>" placeholder="Usuario" readonly onfocus="this.removeAttribute('readonly');"  >*<br><br>
+           <input type="text" name="name" value="<%= datos.name %>" placeholder="Nombre de Tarea" readonly onfocus="this.removeAttribute('readonly');"  >*<br><br>
+           
+           <textarea name="description" rows="10" cols="50" placeholder="descripcion" value="<%= datos.description %>"><%=datos.description %></textarea><br><br>
+          
+           <input type="Date" name="startDate" value="<%= datos.startDate %>" > Fecha Inicio*<br><br>
+           <input type="Date" name="endDate" value="<%= datos.endDate %>" > Fecha Fin*<br><br>
+           <input type="checkbox" name="completed" value="1" > Completada<br><br>
+           <button type="submit" name="button" class="btn btn-primary">Cargar Tarea</button>&nbsp;
+           <a href="/" name="button" style="color:#A00;">Cancelar</a>
+             
+       
+        </div>
+       
+       </form>
+       
+
+
+    
+</main>
+
+<footer>
+    <%- include('partials/pie') %>
+ 
+</footer>
+
+</body>
+</html>
+
+
+

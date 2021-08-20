@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+</head>
+<body class="container">
+
+<header>
+    <%- include('partials/headerL') %>
+  <hr/>
+</header>
+ 
+<main>
+
+  <h3 style="color:#050;"><%= mensajeExitoso %></h3>
+  <a href="/tasks/alta/<%= idUser%>" class="btn btn-primary">Cargar Tarea nueva +</a>
+  <br>
+<h2>Listado de Tareas del Usuario: <%= username %></h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Completada</th>
+        <th>ACCIONES</th>
+        <th></th>
+
+    </tr>
+    <% tasks.forEach(function(task) { %>
+        <tr>
+           
+            <td><%= task.dataValues.id %></td>
+            <td><%= task.dataValues.name %></td>
+            <td><%= task.dataValues.completed %></td>
+            <td><a href="/tasks/detalle/<%= task.dataValues.id %>" class="btn btn-info">Detalle</a>
+                <a href="/tasks/modificar/<%= task.dataValues.id %>"  class="btn btn-warning">Editar</a></td>
+            <td><a href="/tasks/borrando/<%= task.dataValues.id %>"  onclick="return confirm('Estás Seguro de borrar esta task?')"  class="btn btn-danger">Borrar</a></td>
+        </tr>
+        
+    <% }); %>
+    </table>
+    
+</main>
+
+<footer>
+    <%- include('partials/pie') %>
+ 
+</footer>
+  <style>
+      tr:hover td { background-color:#0002; }
+      </style>
+</body>
+</html>

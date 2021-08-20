@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+</head>
+<body class="container">
+
+<header>
+    <%- include('partials/headerL') %>
+    <hr/>
+</header>
+
+<main>
+    <h4>Detalles de Tarea:</h4>
+    <hr/>
+     <ul>
+        <li><b>Id:</b> <%= task.id %></li>
+        <li><b>Nombre:</b> <%= task.name %></li>
+        <li><b>Descripcion:</b> <%= task.description %></li>
+        <li><b>Fecha inicio:</b> <%= task.startDate %></li>
+        <li><b>Fecha fin:</b> <%= task.endDate %></li>
+        <li><b>Completada:</b> <%= task.completed %></li>
+     </ul>
+     <a href="/tasks/<%=task.userId%>" class="btn btn-info">Volver</a>
+
+       
+    
+</main>
+
+<footer>
+    <%- include('partials/pie') %>
+ 
+</footer>
+
+</body>
+</html>
