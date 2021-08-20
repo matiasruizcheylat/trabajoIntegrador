@@ -18,8 +18,6 @@ En sí no tiene la validación completa de los formularios pero cumple con las p
 Trabaja con JWT. Tiene endpoints en cada modelo. Tiene la autenticacion de usuario.
 Implementa la opción A (la BD de la nube Heroku) 
 
-Ante problemas consultame....
-Saludos ...
 
 
 
@@ -46,5 +44,7 @@ PORT="3000"
 DATABASE_URL='postgres://kjbgdzbfrgqpuk:24cd6bd397b25066d8bdd7d842972f57b9af6ed6866149421f978f45b8a45a3f@ec2-44-194-112-166.compute-1.amazonaws.com:5432/d25id0qn389430'
 """""""""""""""""""""
 
+Ante problemas consultame....
+Saludos ...
 
 
